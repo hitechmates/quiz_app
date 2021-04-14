@@ -7,15 +7,26 @@ import 'package:quiz_app/screens/quiz/components/progress_bar.dart';
 
 import 'question_card.dart';
 
-class Body extends StatelessWidget {
-  const Body({
-    Key key,
-  }) : super(key: key);
+class Body extends StatefulWidget {
+  static const String title = "Quiz Screen";
+
+  const Body({Key key}) : super(key: key);
+
+  @override
+  _Body createState() => new _Body();
+}
+
+class _Body extends State<Body> {
+  // Access to controller
+  QuestionController _questionController = Get.put(QuestionController());
 
   @override
   Widget build(BuildContext context) {
-    // Access to controller
-    QuestionController _questionController = Get.put(QuestionController());
+    // _questionController.questions = this.questions;
+    print('----qn------ start ---');
+    print(_questionController.questions);
+    print('----qn------ end ---');
+
     return Stack(
       children: [
         Image(

@@ -2,6 +2,7 @@
 
 // import 'package:get/get_connect/http/src/response/response.dart';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:http/http.dart';
 
@@ -13,7 +14,7 @@ enum MyHttpMethod {
 }
 
 class HttpService {
-  static const String _baseUrl = "api.mocki.io";
+  static const String _baseUrl = "run.mocky.io";
 
   Future<String> callAPI(
       MyHttpMethod httpMethod, String apiName, dynamic body) async {

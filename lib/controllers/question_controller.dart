@@ -1,24 +1,30 @@
+import 'dart:convert';
 import 'package:flutter/animation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:quiz_app/models/Questions.dart';
+import 'package:quiz_app/network/http_service.dart';
 import 'package:quiz_app/screens/submit/submit_screen.dart';
 
 class QuestionController extends GetxController
     with SingleGetTickerProviderMixin {
   AnimationController _animationController;
   Animation _animation;
+
   Animation get animation => this._animation; // To access our animation outside
+
+  final HttpService httpService = HttpService();
 
   PageController _pageController;
   PageController get pageController => this._pageController;
 
-  List<Question> _questions = sample_data
-      .map((question) => Question(
-          id: question['id'],
-          question: question['question'],
-          options: question['options']))
-      .toList();
+  List<Question> _questions;
+  //  = sample_data
+  //     .map((question) => Question(
+  //         id: question['id'],
+  //         question: question['question'],
+  //         options: question['options']))
+  //     .toList();
   List<Question> get questions => this._questions;
 
   bool _isAnswered = false;
@@ -35,6 +41,7 @@ class QuestionController extends GetxController
 
   @override
   void onInit() {
+    // _questions = fetchQuestions();
     _animationController =
         AnimationController(duration: Duration(seconds: 60), vsync: this);
 
@@ -45,7 +52,6 @@ class QuestionController extends GetxController
 
     // start animation
     _animationController.forward();
-
     _pageController = PageController();
     super.onInit();
   }
@@ -89,5 +95,24 @@ class QuestionController extends GetxController
 
   void updateQuestionNumber(int index) {
     _questionNumber.value = index + 1;
+  }
+
+  fetchQuestions() async {
+    final res = json.decode(await httpService.callAPI(
+        MyHttpMethod.get, '/v3/c6657a95-ef52-4783-84d7-46c934013bf7', {}));
+    final data = res['data'] as List;
+    List<Question> _questionsList = [];
+
+    for (int i = 0; i < data.length; i++) {
+      _questionsList.add(Question.fromJson(data[i]));
+    }
+    print(_questionsList.runtimeType);
+
+    return _questionsList;
+  }
+
+  void setQuestions(List<Question> qn) {
+    print('-----3453535------');
+    this._questions = qn;
   }
 }

@@ -1,9 +1,18 @@
-class Question {
-  final int id, answer;
-  final String question;
-  final List<String> options;
+// import 'package:json_annotation/json_annotation.dart';
 
-  Question({this.id, this.question, this.answer, this.options});
+class Question {
+  int id;
+  String question;
+  List<String> options;
+
+  Question({this.id, this.question, this.options});
+
+  factory Question.fromJson(dynamic json) {
+    return new Question(
+        id: json['id'],
+        question: json['question'],
+        options: new List<String>.from(json['options']));
+  }
 }
 
 const List sample_data = [
