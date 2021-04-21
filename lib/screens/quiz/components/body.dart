@@ -22,11 +22,6 @@ class _Body extends State<Body> {
 
   @override
   Widget build(BuildContext context) {
-    // _questionController.questions = this.questions;
-    print('----qn------ start ---');
-    print(_questionController.questions);
-    print('----qn------ end ---');
-
     return Stack(
       children: [
         Image(

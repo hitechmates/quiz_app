@@ -73,9 +73,9 @@ class QuestionController extends GetxController
     _animationController.stop();
     update();
 
-    Future.delayed(Duration(seconds: 3), () {
-      nextQuestion();
-    });
+    // Future.delayed(Duration(seconds: 3), () {
+    //   nextQuestion();
+    // });
   }
 
   void nextQuestion() {
@@ -99,8 +99,9 @@ class QuestionController extends GetxController
 
   fetchQuestions() async {
     final res = json.decode(await httpService.callAPI(
-        MyHttpMethod.get, '/v3/c6657a95-ef52-4783-84d7-46c934013bf7', {}));
+        MyHttpMethod.get, '/v3/2f5d5f28-844e-4750-a8ed-bc2e69e672b7', {}));
     final data = res['data'] as List;
+    print(data);
     List<Question> _questionsList = [];
 
     for (int i = 0; i < data.length; i++) {
@@ -112,7 +113,6 @@ class QuestionController extends GetxController
   }
 
   void setQuestions(List<Question> qn) {
-    print('-----3453535------');
     this._questions = qn;
   }
 }

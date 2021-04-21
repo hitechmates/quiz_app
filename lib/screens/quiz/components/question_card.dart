@@ -36,6 +36,7 @@ class QuestionCard extends StatelessWidget {
             (index) => Option(
                   index: index,
                   text: question.options[index],
+                  ansType: question.ansType,
                   press: () => _controller.checkAns(question, index),
                 ))
       ]),
