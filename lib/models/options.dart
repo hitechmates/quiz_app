@@ -1,28 +1,25 @@
-// import 'package:json_annotation/json_annotation.dart';
-// part 'options.g.dart';
-//
-// @JsonSerializable(explicitToJson: true)
-// class Options {
-//   String text;
-//   String type;
-//   List<String> values;
-//
-//   Options(this.text, this.type, this.values);
-//   factory Options.fromJson(dynamic option) => _$OptionsFromJson(option);
-//
-//   dynamic toJson() => _$OptionsToJson(this);
-// }
+/// text : "0-1 years"
+/// type : null
+/// values : null
 
 class Options {
-  String text;
-  String? type;
-  List<String>? values;
+  String? text;
+  dynamic? type;
+  dynamic? values;
 
-  Options({required this.text, this.type, this.values});
-  // factory Options.fromJson(dynamic option) => _$OptionsFromJson(option);
-  factory Options.fromJson(Map<String, dynamic> json) => Options(
-        text: json["text"],
-        type: json["type"],
-        values: new List<String>.from(json['values']),
-      );
+  Options({this.text, this.type, this.values});
+
+  Options.fromJson(dynamic json) {
+    text = json["text"];
+    type = json["type"];
+    values = json["values"];
+  }
+
+  Map<String, dynamic> toJson() {
+    var map = <String, dynamic>{};
+    map["text"] = text;
+    map["type"] = type;
+    map["values"] = values;
+    return map;
+  }
 }

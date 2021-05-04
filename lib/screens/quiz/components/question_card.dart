@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quiz_app/controllers/question_controller.dart';
-import 'package:quiz_app/models/questions.dart';
+import 'package:quiz_app/models/question.dart';
 
 import '../../../constants.dart';
 import 'option.dart';
@@ -25,7 +25,7 @@ class QuestionCard extends StatelessWidget {
           color: Colors.white, borderRadius: BorderRadius.circular(25)),
       child: Column(children: [
         Text(
-          question.question,
+          question.question!,
           style: Theme.of(context)
               .textTheme
               .headline6!

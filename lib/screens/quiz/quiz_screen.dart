@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quiz_app/controllers/question_controller.dart';
-import 'package:quiz_app/models/questions.dart';
+import 'package:quiz_app/models/question.dart';
 
 import 'components/body.dart';
 

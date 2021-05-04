@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/animation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:quiz_app/models/questions.dart';
+import 'package:quiz_app/models/question.dart';
 import 'package:quiz_app/network/http_service.dart';
 import 'package:quiz_app/screens/submit/submit_screen.dart';
 
@@ -106,11 +106,8 @@ class QuestionController extends GetxController
     print('22----${data.runtimeType}');
     for (int i = 0; i < data.length; i++) {
       print('55----${data[i].runtimeType}');
-      _questionsList.add(Question.fromJson(data[i]));
+      _questionsList.add(new Question.fromJson(data[i]));
     }
-
-    // List<Question> temp =
-    //     data.map((itemWord) => Question.fromJson(itemWord)).toList();
 
     print('_questionsList===${_questionsList}');
 
