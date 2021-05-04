@@ -2,23 +2,23 @@ import 'dart:convert';
 import 'package:flutter/animation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:quiz_app/models/Questions.dart';
+import 'package:quiz_app/models/questions.dart';
 import 'package:quiz_app/network/http_service.dart';
 import 'package:quiz_app/screens/submit/submit_screen.dart';
 
 class QuestionController extends GetxController
     with SingleGetTickerProviderMixin {
-  AnimationController _animationController;
-  Animation _animation;
+  late AnimationController _animationController;
+  late Animation _animation;
 
   Animation get animation => this._animation; // To access our animation outside
 
   final HttpService httpService = HttpService();
 
-  PageController _pageController;
+  late PageController _pageController;
   PageController get pageController => this._pageController;
 
-  List<Question> _questions;
+  late List<Question> _questions;
   //  = sample_data
   //     .map((question) => Question(
   //         id: question['id'],
@@ -30,7 +30,7 @@ class QuestionController extends GetxController
   bool _isAnswered = false;
   bool get isAnswered => this._isAnswered;
 
-  int _selectedAns;
+  late int _selectedAns;
   int get selectedAns => this._selectedAns;
 
   int _totalAnsweredQuestions = 0;
@@ -99,15 +99,20 @@ class QuestionController extends GetxController
 
   fetchQuestions() async {
     final res = json.decode(await httpService.callAPI(
-        MyHttpMethod.get, '/v3/2f5d5f28-844e-4750-a8ed-bc2e69e672b7', {}));
-    final data = res['data'] as List;
-    print(data);
-    List<Question> _questionsList = [];
+        MyHttpMethod.get, '/v3/4b75ad22-e9d7-45f7-991c-e6a28cf9f74d', {}));
 
+    final data = res['data'] as List;
+    List<Question> _questionsList = [];
+    print('22----${data.runtimeType}');
     for (int i = 0; i < data.length; i++) {
+      print('55----${data[i].runtimeType}');
       _questionsList.add(Question.fromJson(data[i]));
     }
-    print(_questionsList.runtimeType);
+
+    // List<Question> temp =
+    //     data.map((itemWord) => Question.fromJson(itemWord)).toList();
+
+    print('_questionsList===${_questionsList}');
 
     return _questionsList;
   }

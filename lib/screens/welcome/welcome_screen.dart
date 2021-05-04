@@ -27,7 +27,7 @@ class WelcomeScreen extends StatelessWidget {
                 ),
                 Text(
                   "Let's Play Quiz",
-                  style: Theme.of(context).textTheme.headline4.copyWith(
+                  style: Theme.of(context).textTheme.headline4!.copyWith(
                       color: Colors.white, fontWeight: FontWeight.bold),
                 ),
                 Text("Enter your information below"),
@@ -54,7 +54,7 @@ class WelcomeScreen extends StatelessWidget {
                       "Start Quiz",
                       style: Theme.of(context)
                           .textTheme
-                          .button
+                          .button!
                           .copyWith(color: Colors.black),
                     ),
                   ),

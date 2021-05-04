@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quiz_app/controllers/question_controller.dart';
-import 'package:quiz_app/models/Questions.dart';
+import 'package:quiz_app/models/questions.dart';
 
 import '../../../constants.dart';
 import 'option.dart';
 
 class QuestionCard extends StatelessWidget {
   const QuestionCard({
-    Key key,
-    @required this.question,
+    Key? key,
+    required this.question,
   }) : super(key: key);
 
   final Question question;
@@ -17,6 +17,7 @@ class QuestionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     QuestionController _controller = Get.put(QuestionController());
+    // print('aa====${question.options}');
     return Container(
       margin: EdgeInsets.symmetric(horizontal: kDefaultPadding),
       padding: EdgeInsets.all(kDefaultPadding),
@@ -27,18 +28,18 @@ class QuestionCard extends StatelessWidget {
           question.question,
           style: Theme.of(context)
               .textTheme
-              .headline6
+              .headline6!
               .copyWith(color: kBlackColor),
         ),
         SizedBox(height: kDefaultPadding / 2),
-        ...List.generate(
-            question.options.length,
-            (index) => Option(
-                  index: index,
-                  text: question.options[index],
-                  ansType: question.ansType,
-                  press: () => _controller.checkAns(question, index),
-                ))
+        // ...List.generate(
+        //     question.options.length,
+        //     (index) => Option(
+        //           index: index,
+        //           text: question.options[index],
+        //           type: question.type,
+        //           press: () => _controller.checkAns(question, index),
+        //         ))
       ]),
     );
   }

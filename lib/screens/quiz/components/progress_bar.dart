@@ -5,7 +5,7 @@ import 'package:quiz_app/controllers/question_controller.dart';
 
 class ProgressBar extends StatelessWidget {
   const ProgressBar({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

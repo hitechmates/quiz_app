@@ -5,17 +5,17 @@ import 'package:quiz_app/controllers/question_controller.dart';
 import '../../../constants.dart';
 
 class Option extends StatefulWidget {
-  const Option({
-    Key key,
-    this.text,
-    this.index,
-    this.ansType,
-    this.press,
-  }) : super(key: key);
+  const Option(
+      {Key? key,
+      required this.text,
+      required this.index,
+      required this.type,
+      required this.press})
+      : super(key: key);
 
-  final String text;
+  final List text;
   final int index;
-  final String ansType;
+  final String type;
   final VoidCallback press;
 
   @override
@@ -26,7 +26,7 @@ class _OptionState extends State<Option> {
   bool valuefirst = false;
 
   Widget condition(qnController) {
-    Widget wgt;
+    Widget wgt = new Container();
 
     Color getTheRightColor() {
       if (qnController.isAnswered) {
@@ -37,55 +37,57 @@ class _OptionState extends State<Option> {
       return kGrayColor;
     }
 
-    switch (widget.ansType) {
-      case 'multi':
-        wgt = CheckboxListTile(
-          controlAffinity: ListTileControlAffinity.trailing,
-          // secondary: const Icon(Icons.alarm),
-          title: Text(
-            "${widget.index + 1} ${widget.text}",
-            style: TextStyle(color: kGrayColor, fontSize: 16),
-          ),
-          // subtitle: Text('Ringing after 12 hours'),
-          autofocus: false,
-          activeColor: Colors.blue,
-          checkColor: Colors.white,
-          selected: valuefirst,
-          dense: true,
-          value: valuefirst,
-          onChanged: (bool value) {
-            setState(() {
-              this.valuefirst = value;
-            });
-          },
-        );
-        break;
-      default:
-        wgt = Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              "${widget.index + 1} ${widget.text}",
-              style: TextStyle(color: getTheRightColor(), fontSize: 16),
-            ),
-            Container(
-              height: 26,
-              width: 26,
-              decoration: BoxDecoration(
-                color: getTheRightColor() == kGrayColor
-                    ? Colors.transparent
-                    : getTheRightColor(),
-                borderRadius: BorderRadius.circular(50),
-                border: Border.all(color: getTheRightColor()),
-              ),
-              child: Icon(
-                Icons.close,
-                size: 16,
-              ),
-            )
-          ],
-        );
-    }
+    print('in opt---${widget.text}');
+
+    // switch (widget.type) {
+    //   case 'multi':
+    //     wgt = CheckboxListTile(
+    //       controlAffinity: ListTileControlAffinity.trailing,
+    //       // secondary: const Icon(Icons.alarm),
+    //       title: Text(
+    //         "${widget.index + 1} ${widget.text}",
+    //         style: TextStyle(color: kGrayColor, fontSize: 16),
+    //       ),
+    //       // subtitle: Text('Ringing after 12 hours'),
+    //       autofocus: false,
+    //       activeColor: Colors.blue,
+    //       checkColor: Colors.white,
+    //       selected: valuefirst,
+    //       dense: true,
+    //       value: valuefirst,
+    //       onChanged: (bool value) {
+    //         setState(() {
+    //           this.valuefirst = value;
+    //         });
+    //       },
+    //     );
+    //     break;
+    //   default:
+    //     wgt = Row(
+    //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //       children: [
+    //         Text(
+    //           "${widget.index + 1} ${widget.text}",
+    //           style: TextStyle(color: getTheRightColor(), fontSize: 16),
+    //         ),
+    //         Container(
+    //           height: 26,
+    //           width: 26,
+    //           decoration: BoxDecoration(
+    //             color: getTheRightColor() == kGrayColor
+    //                 ? Colors.transparent
+    //                 : getTheRightColor(),
+    //             borderRadius: BorderRadius.circular(50),
+    //             border: Border.all(color: getTheRightColor()),
+    //           ),
+    //           child: Icon(
+    //             Icons.close,
+    //             size: 16,
+    //           ),
+    //         )
+    //       ],
+    //     );
+    // }
     return wgt;
   }
 
