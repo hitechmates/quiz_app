@@ -95,69 +95,103 @@ class _OptionState extends State<Option> {
         break;
       default:
         wgt = Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(kDefaultPadding * 0.75),
-                  child: Text(
-                    "${parentWidget.index + 1} ${parentWidget.text}",
-                    style: TextStyle(color: getTheRightColor(), fontSize: 16),
-                  ),
-                ),
-
-                Widgets(
-                    type: parentWidget.optionType, values: parentWidget.values)
-                // Expanded(
-                //     child: ListView.builder(
-                //   scrollDirection: Axis.vertical,
-                //   shrinkWrap: true,
-                //   physics: NeverScrollableScrollPhysics(),
-                //   padding: EdgeInsets.all(kDefaultPadding),
-                //   itemCount: parentWidget.values!.length,
-                //   itemBuilder: (BuildContext context, int index) {
-                //     String dropdownValue = parentWidget.values![0];
-                //     return DropdownButton<String>(
-                //       value: dropdownValue,
-                //       icon: const Icon(Icons.arrow_downward),
-                //       iconSize: 24,
-                //       elevation: 16,
-                //       style: const TextStyle(color: Colors.deepPurple),
-                //       underline: Container(
-                //         height: 2,
-                //         color: Colors.deepPurpleAccent,
-                //       ),
-                //       onChanged: (String? newValue) {
-                //         setState(() {
-                //           dropdownValue = newValue!;
-                //         });
-                //       },
-                //       items: (parentWidget.values)
-                //           .cast<String>()
-                //           .map<DropdownMenuItem<String>>((String value) {
-                //         return DropdownMenuItem<String>(
-                //           value: value,
-                //           child: Text(value),
-                //         );
-                //       }).toList(),
-                //     );
-                //     //   RadioListTile<String>(
-                //     //   title: Text(parentWidget.values![index],
-                //     //       style: Theme.of(context)
-                //     //           .textTheme
-                //     //           .subtitle1!
-                //     //           .copyWith(color: kGrayColor)),
-                //     //   value: parentWidget.values![index],
-                //     //   groupValue: selectedRadio,
-                //     //   onChanged: (val) => {print('vall----$val')},
-                //     // );
-                //   },
-                // ))
-              ],
+            Text(
+              "${parentWidget.index + 1} ${parentWidget.text}",
+              style: TextStyle(color: getTheRightColor(), fontSize: 16),
             ),
+            Widgets(type: parentWidget.optionType, values: parentWidget.values)
+            // Container(
+            //   padding: EdgeInsets.all(kDefaultPadding),
+            //   child: Widgets(
+            //       type: parentWidget.optionType, values: parentWidget.values),
+            // )
           ],
         );
+
+      //     Padding(
+      //   padding: const EdgeInsets.all(kDefaultPadding * 0.75),
+      //   child: Column(
+      //     mainAxisAlignment: MainAxisAlignment.start,
+      //     children: [
+      //       ListTile(
+      //         title: Text(
+      //           "${parentWidget.index + 1} ${parentWidget.text}",
+      //           style: TextStyle(color: getTheRightColor(), fontSize: 16),
+      //         ),
+      //         trailing: Widgets(
+      //             type: parentWidget.optionType, values: parentWidget.values),
+      //       )
+      //     ],
+      //   ),
+      // );
+
+      //     Column(
+      //   children: [
+      //     Row(
+      //       crossAxisAlignment: CrossAxisAlignment.start,
+      //       children: [
+      //         Padding(
+      //           padding: const EdgeInsets.all(kDefaultPadding * 0.75),
+      //           child: Text(
+      //             "${parentWidget.index + 1} ${parentWidget.text}",
+      //             style: TextStyle(color: getTheRightColor(), fontSize: 16),
+      //           ),
+      //         ),
+      //
+      //         Widgets(
+      //             type: parentWidget.optionType, values: parentWidget.values)
+      //         // Expanded(
+      //         //     child: ListView.builder(
+      //         //   scrollDirection: Axis.vertical,
+      //         //   shrinkWrap: true,
+      //         //   physics: NeverScrollableScrollPhysics(),
+      //         //   padding: EdgeInsets.all(kDefaultPadding),
+      //         //   itemCount: parentWidget.values!.length,
+      //         //   itemBuilder: (BuildContext context, int index) {
+      //         //     String dropdownValue = parentWidget.values![0];
+      //         //     return DropdownButton<String>(
+      //         //       value: dropdownValue,
+      //         //       icon: const Icon(Icons.arrow_downward),
+      //         //       iconSize: 24,
+      //         //       elevation: 16,
+      //         //       style: const TextStyle(color: Colors.deepPurple),
+      //         //       underline: Container(
+      //         //         height: 2,
+      //         //         color: Colors.deepPurpleAccent,
+      //         //       ),
+      //         //       onChanged: (String? newValue) {
+      //         //         setState(() {
+      //         //           dropdownValue = newValue!;
+      //         //         });
+      //         //       },
+      //         //       items: (parentWidget.values)
+      //         //           .cast<String>()
+      //         //           .map<DropdownMenuItem<String>>((String value) {
+      //         //         return DropdownMenuItem<String>(
+      //         //           value: value,
+      //         //           child: Text(value),
+      //         //         );
+      //         //       }).toList(),
+      //         //     );
+      //         //     //   RadioListTile<String>(
+      //         //     //   title: Text(parentWidget.values![index],
+      //         //     //       style: Theme.of(context)
+      //         //     //           .textTheme
+      //         //     //           .subtitle1!
+      //         //     //           .copyWith(color: kGrayColor)),
+      //         //     //   value: parentWidget.values![index],
+      //         //     //   groupValue: selectedRadio,
+      //         //     //   onChanged: (val) => {print('vall----$val')},
+      //         //     // );
+      //         //   },
+      //         // ))
+      //       ],
+      //     ),
+      //   ],
+      // );
     }
     return wgt;
   }
@@ -170,8 +204,8 @@ class _OptionState extends State<Option> {
           return InkWell(
             onTap: widget.press,
             child: Container(
-              margin: EdgeInsets.only(top: kDefaultPadding),
-              padding: EdgeInsets.all(kDefaultPadding),
+              margin: EdgeInsets.only(top: 10),
+              padding: EdgeInsets.all(10),
               // decoration: BoxDecoration(
               //   border: Border.all(color: kGrayColor),
               //   borderRadius: BorderRadius.circular(15),

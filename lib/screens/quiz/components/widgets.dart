@@ -20,19 +20,22 @@ class _WidgetsState extends State<Widgets> {
     Widget wgt;
 
     switch (widget.type) {
-      // case 'text':
-      //   wgt = Column(
-      //     crossAxisAlignment: CrossAxisAlignment.start,
-      //     children: [
-      //       TextFormField(
-      //         decoration: InputDecoration(
-      //           border: UnderlineInputBorder(),
-      //           labelText: 'Enter your username',
-      //         ),
-      //       ),
-      //     ],
-      //   );
-      //   break;
+      case 'text':
+        wgt = TextFormField(
+          decoration: InputDecoration(
+            filled: true,
+            fillColor: Colors.white,
+            hintText: "",
+            hintStyle: const TextStyle(color: kSecondaryColor),
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.cyan),
+            ),
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.cyan),
+            ),
+          ),
+        );
+        break;
       case 'select':
         String dropdownValue = widget.values![0];
         wgt = DropdownButton<String>(
