@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/controllers/question_controller.dart';
 import 'package:quiz_app/screens/quiz/components/progress_bar.dart';
+import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 import 'question_card.dart';
 
