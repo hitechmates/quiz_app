@@ -17,12 +17,18 @@ class QuestionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     QuestionController _controller = Get.put(QuestionController());
-    print('aa====${question.options![0].text}');
+    Size size = MediaQuery.of(context).size;
+    print('size====${size.width}');
+    double maxWidth = (size.width > 1000) ? size.width * 0.25 : kDefaultPadding;
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: kDefaultPadding),
+      margin:
+          EdgeInsets.symmetric(horizontal: maxWidth, vertical: kDefaultPadding),
       padding: EdgeInsets.all(kDefaultPadding),
+      // constraints: BoxConstraints(maxWidth: 200),
       decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(25)),
+        color: Colors.white,
+        // borderRadius: BorderRadius.circular(25)
+      ),
       child: Column(children: [
         Text(
           question.question!,

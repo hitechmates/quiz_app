@@ -60,17 +60,18 @@ class _Body extends State<Body> {
                         ])),
                   )),
               Divider(thickness: 1.5),
-              SizedBox(height: kDefaultPadding),
+              // SizedBox(height: kDefaultPadding),
               Expanded(
                   child: PageView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                controller: _questionController.pageController,
-                onPageChanged: _questionController.updateQuestionNumber,
-                itemCount: _questionController.questions.length,
-                itemBuilder: (context, index) => QuestionCard(
-                  question: _questionController.questions[index],
-                ),
-              ))
+                      physics: NeverScrollableScrollPhysics(),
+                      controller: _questionController.pageController,
+                      onPageChanged: _questionController.updateQuestionNumber,
+                      itemCount: _questionController.questions.length,
+                      itemBuilder: (context, index) => SizedBox(
+                          width: 500,
+                          child: QuestionCard(
+                            question: _questionController.questions[index],
+                          ))))
             ],
           ),
         )

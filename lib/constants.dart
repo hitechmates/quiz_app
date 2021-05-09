@@ -12,6 +12,7 @@ const kPrimaryGradient = LinearGradient(
 );
 
 const double kDefaultPadding = 20.0;
+const double kDefaultPadding1 = 15.0;
 
 Color kWhite = Color(0xFFF1F1F2);
 Color kGrey = Color(0xFFBCBABE);
