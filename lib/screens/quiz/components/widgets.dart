@@ -39,6 +39,7 @@ class _WidgetsState extends State<Widgets> {
       case 'select':
         String dropdownValue = widget.values![0];
         wgt = DropdownButton<String>(
+          isExpanded: true,
           value: dropdownValue,
           // isExpanded: true,
           dropdownColor: Colors.white,
@@ -51,7 +52,7 @@ class _WidgetsState extends State<Widgets> {
           style: const TextStyle(color: Colors.deepPurple),
           underline: Container(
             height: 2,
-            width: 26,
+            width: 100,
             color: Colors.deepPurpleAccent,
           ),
           onChanged: (String? newValue) {

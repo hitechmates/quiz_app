@@ -98,16 +98,23 @@ class _OptionState extends State<Option> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              "${parentWidget.index + 1} ${parentWidget.text}",
-              style: TextStyle(color: getTheRightColor(), fontSize: 16),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "${parentWidget.index + 1} ${parentWidget.text}",
+                    style: TextStyle(color: getTheRightColor(), fontSize: 16),
+                  ),
+                ),
+              ],
             ),
-            Widgets(type: parentWidget.optionType, values: parentWidget.values)
-            // Container(
-            //   padding: EdgeInsets.all(kDefaultPadding),
-            //   child: Widgets(
-            //       type: parentWidget.optionType, values: parentWidget.values),
-            // )
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Widgets(
+                  type: parentWidget.optionType, values: parentWidget.values),
+            )
           ],
         );
 
