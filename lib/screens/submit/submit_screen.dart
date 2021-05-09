@@ -24,7 +24,7 @@ class SubmitScreen extends StatelessWidget {
                 "Review & Submit",
                 style: Theme.of(context)
                     .textTheme
-                    .headline3
+                    .headline3!
                     .copyWith(color: kSecondaryColor),
               ),
               Spacer(),
@@ -32,7 +32,7 @@ class SubmitScreen extends StatelessWidget {
                 "${_questionController.totalAnsweredQuestions}/${_questionController.questions.length}",
                 style: Theme.of(context)
                     .textTheme
-                    .headline3
+                    .headline3!
                     .copyWith(color: kSecondaryColor),
               ),
               Spacer(flex: 3),

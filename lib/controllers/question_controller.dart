@@ -2,23 +2,23 @@ import 'dart:convert';
 import 'package:flutter/animation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:quiz_app/models/Questions.dart';
+import 'package:quiz_app/models/question.dart';
 import 'package:quiz_app/network/http_service.dart';
 import 'package:quiz_app/screens/submit/submit_screen.dart';
 
 class QuestionController extends GetxController
     with SingleGetTickerProviderMixin {
-  AnimationController _animationController;
-  Animation _animation;
+  late AnimationController _animationController;
+  late Animation _animation;
 
   Animation get animation => this._animation; // To access our animation outside
 
   final HttpService httpService = HttpService();
 
-  PageController _pageController;
+  late PageController _pageController;
   PageController get pageController => this._pageController;
 
-  List<Question> _questions;
+  late List<Question> _questions;
   //  = sample_data
   //     .map((question) => Question(
   //         id: question['id'],
@@ -30,7 +30,7 @@ class QuestionController extends GetxController
   bool _isAnswered = false;
   bool get isAnswered => this._isAnswered;
 
-  int _selectedAns;
+  late int _selectedAns;
   int get selectedAns => this._selectedAns;
 
   int _totalAnsweredQuestions = 0;
@@ -99,16 +99,13 @@ class QuestionController extends GetxController
 
   fetchQuestions() async {
     final res = json.decode(await httpService.callAPI(
-        MyHttpMethod.get, '/v3/2f5d5f28-844e-4750-a8ed-bc2e69e672b7', {}));
+        MyHttpMethod.get, '/v3/28c79630-daff-4763-9d7d-889a8e68bd6e', {}));
+
     final data = res['data'] as List;
-    print(data);
     List<Question> _questionsList = [];
-
     for (int i = 0; i < data.length; i++) {
-      _questionsList.add(Question.fromJson(data[i]));
+      _questionsList.add(new Question.fromJson(data[i]));
     }
-    print(_questionsList.runtimeType);
-
     return _questionsList;
   }
 

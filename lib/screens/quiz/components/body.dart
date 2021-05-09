@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/controllers/question_controller.dart';
-import 'package:quiz_app/models/Questions.dart';
 import 'package:quiz_app/screens/quiz/components/progress_bar.dart';
 
 import 'question_card.dart';
@@ -10,7 +9,7 @@ import 'question_card.dart';
 class Body extends StatefulWidget {
   static const String title = "Quiz Screen";
 
-  const Body({Key key}) : super(key: key);
+  const Body({Key? key}) : super(key: key);
 
   @override
   _Body createState() => new _Body();
@@ -49,14 +48,14 @@ class _Body extends State<Body> {
                             "Question ${_questionController.questionNumber.value}",
                         style: Theme.of(context)
                             .textTheme
-                            .headline4
+                            .headline4!
                             .copyWith(color: kSecondaryColor),
                         children: [
                           TextSpan(
                               text: "/${_questionController.questions.length}",
                               style: Theme.of(context)
                                   .textTheme
-                                  .headline5
+                                  .headline5!
                                   .copyWith(color: kSecondaryColor))
                         ])),
                   )),
