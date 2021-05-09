@@ -33,11 +33,11 @@ class _Body extends State<Body> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-                child: ProgressBar(),
-              ),
+              // Padding(
+              //   padding:
+              //       const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+              //   child: ProgressBar(),
+              // ),
               SizedBox(height: kDefaultPadding),
               Padding(
                   padding:
@@ -61,17 +61,17 @@ class _Body extends State<Body> {
                   )),
               Divider(thickness: 1.5),
               // SizedBox(height: kDefaultPadding),
+              ProgressBar(),
+
               Expanded(
                   child: PageView.builder(
                       physics: NeverScrollableScrollPhysics(),
                       controller: _questionController.pageController,
                       onPageChanged: _questionController.updateQuestionNumber,
                       itemCount: _questionController.questions.length,
-                      itemBuilder: (context, index) => SizedBox(
-                          width: 500,
-                          child: QuestionCard(
+                      itemBuilder: (context, index) => QuestionCard(
                             question: _questionController.questions[index],
-                          ))))
+                          )))
             ],
           ),
         )

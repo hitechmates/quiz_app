@@ -10,13 +10,14 @@ class ProgressBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    double maxWidth = (size.width > 1000) ? size.width * 0.25 : kDefaultPadding;
+
     return Container(
+      margin: EdgeInsets.symmetric(horizontal: maxWidth),
       width: double.infinity,
-      height: 50,
-      decoration: BoxDecoration(
-        border: Border.all(color: Color(0xFF3F4768), width: 3),
-        borderRadius: BorderRadius.circular(50),
-      ),
+      height: 10,
+      color: kGrayColor,
       child: GetBuilder<QuestionController>(
           init: QuestionController(),
           builder: (controller) {
@@ -26,22 +27,11 @@ class ProgressBar extends StatelessWidget {
                   builder: (context, constraints) => Container(
                     width: constraints.maxWidth * controller.animation.value,
                     decoration: BoxDecoration(
-                      gradient: kPrimaryGradient,
-                      borderRadius: BorderRadius.circular(50),
+                      color: Colors.lightBlue,
+                      // borderRadius: BorderRadius.circular(50),
                     ),
                   ),
                 ),
-                Positioned.fill(
-                    child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: kDefaultPadding / 2),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("${(controller.animation.value * 60).round()} sec"),
-                    ],
-                  ),
-                ))
               ],
             );
           }),
