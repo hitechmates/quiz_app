@@ -5,9 +5,16 @@ import 'package:quiz_app/models/question.dart';
 
 import 'components/body.dart';
 
-class QuizScreen extends StatelessWidget {
+class QuizScreen extends StatefulWidget {
   static const String title = "Quiz Screen";
+
+  @override
+  _QuizScreenState createState() => _QuizScreenState();
+}
+
+class _QuizScreenState extends State<QuizScreen> {
   late List<Question> questions;
+
   QuestionController _questionController = Get.put(QuestionController());
 
   getData() async {

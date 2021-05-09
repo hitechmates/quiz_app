@@ -99,18 +99,13 @@ class QuestionController extends GetxController
 
   fetchQuestions() async {
     final res = json.decode(await httpService.callAPI(
-        MyHttpMethod.get, '/v3/4b75ad22-e9d7-45f7-991c-e6a28cf9f74d', {}));
+        MyHttpMethod.get, '/v3/28c79630-daff-4763-9d7d-889a8e68bd6e', {}));
 
     final data = res['data'] as List;
     List<Question> _questionsList = [];
-    print('22----${data.runtimeType}');
     for (int i = 0; i < data.length; i++) {
-      print('55----${data[i].runtimeType}');
       _questionsList.add(new Question.fromJson(data[i]));
     }
-
-    print('_questionsList===${_questionsList}');
-
     return _questionsList;
   }
 

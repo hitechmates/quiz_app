@@ -1,18 +1,18 @@
 /// text : "0-1 years"
 /// type : null
-/// values : null
+/// values : []
 
 class Options {
-  String? text;
+  String text = '';
   dynamic? type;
-  dynamic? values;
+  List<String>? values;
 
-  Options({this.text, this.type, this.values});
+  Options({required this.text, this.type, this.values});
 
   Options.fromJson(dynamic json) {
     text = json["text"];
     type = json["type"];
-    values = json["values"];
+    values = json["values"].cast<String>();
   }
 
   Map<String, dynamic> toJson() {
