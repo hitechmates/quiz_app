@@ -90,7 +90,7 @@ class WelcomeScreen extends StatelessWidget {
                         gradient: kPrimaryGradient,
                         borderRadius: BorderRadius.all(Radius.circular(12))),
                     child: Text(
-                      "Signin",
+                      "Login",
                       style: Theme.of(context)
                           .textTheme
                           .button!
