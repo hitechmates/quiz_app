@@ -1,9 +1,16 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quiz_app/constants.dart';
+import 'package:quiz_app/network/http_service.dart';
 import 'package:quiz_app/screens/quiz/quiz_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final HttpService httpService = HttpService();
+  static const JsonCodec json = JsonCodec();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,10 +40,21 @@ class WelcomeScreen extends StatelessWidget {
                 Text("Enter your information below"),
                 Spacer(),
                 TextField(
+                  controller: _emailController,
                   decoration: InputDecoration(
                       filled: true,
                       fillColor: Color(0xFF1C2341),
-                      hintText: "Full Name",
+                      hintText: "User name",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(12)))),
+                ),
+                Spacer(),
+                TextField(
+                  controller: _passwordController,
+                  decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Color(0xFF1C2341),
+                      hintText: "Password",
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(12)))),
                 ),
@@ -61,12 +79,44 @@ class WelcomeScreen extends StatelessWidget {
                 ),
                 Spacer(
                   flex: 2,
-                )
+                ),
+                InkWell(
+                  onTap: _validateFormAndLogin,
+                  child: Container(
+                    width: double.infinity,
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.all(kDefaultPadding * 0.75), //15
+                    decoration: BoxDecoration(
+                        gradient: kPrimaryGradient,
+                        borderRadius: BorderRadius.all(Radius.circular(12))),
+                    child: Text(
+                      "Signin",
+                      style: Theme.of(context)
+                          .textTheme
+                          .button!
+                          .copyWith(color: Colors.black),
+                    ),
+                  ),
+                ),
+                Spacer(
+                  flex: 2,
+                ),
               ],
             ),
           ))
         ],
       ),
     );
+  }
+
+  Future<void> _validateFormAndLogin() async {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['username'] = _emailController.text;
+    data['password'] = _passwordController.text;
+    var k  = await httpService.callAPI(
+        MyHttpMethod.post, '/v0/api/auth/signin', data);
+    final res = json.decode(k);
+
+    Get.to(QuizScreen());
   }
 }

@@ -14,11 +14,12 @@ enum MyHttpMethod {
 }
 
 class HttpService {
-  static const String _baseUrl = "run.mocky.io";
+//  static const String _baseUrl = "run.mocky.io";
+  static const String _baseUrl = "localhost:8080";
 
   Future<String> callAPI(
       MyHttpMethod httpMethod, String apiName, dynamic body) async {
-    var uri = Uri.https(_baseUrl, apiName);
+    var uri = Uri.http(_baseUrl, apiName);
 
     Response res;
 
@@ -33,6 +34,9 @@ class HttpService {
         {
           res = await post(uri,
               body: json.encode(body),
+              headers: <String, String>{
+                'Content-Type': 'application/json; charset=UTF-8',
+              },
               encoding: Encoding.getByName("application/json"));
         }
         break;
