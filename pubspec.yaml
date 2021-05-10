@@ -33,7 +33,7 @@ dependencies:
 
   # state management, intelligent dependency injection, and route management
   get: ^3.24.0
-
+  universal_html: ^2.0.8
   http: 0.13.1
   json_annotation: ^4.0.1
   html: ^0.15.0

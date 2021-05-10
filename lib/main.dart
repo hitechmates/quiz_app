@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
     Widget  _defaultHome = WelcomeScreen();// WelcomeScreen();
     // Get result of the login function.
     String token = CookieManager.getCookie("token");
+    print("token: " + token);
     bool _result = token.isNotEmpty || token != "";
     if (_result) {
       _defaultHome = QuizScreen();
