@@ -99,7 +99,7 @@ class QuestionController extends GetxController
 
   fetchQuestions() async {
     final res = await httpService.callAPI(
-        MyHttpMethod.get, '/v3/28c79630-daff-4763-9d7d-889a8e68bd6e', {});
+        MyHttpMethod.get, '/hitechmates/v0/questions', {});
 
     final data = res['data'] as List;
     List<Question> _questionsList = [];

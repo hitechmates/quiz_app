@@ -14,12 +14,12 @@ enum MyHttpMethod {
 }
 
 class HttpService {
-  static const String _baseUrl = "run.mocky.io";
+  static const String _baseUrl = "localhost:8080";
   // static const Headers = {HttpHeaders.authorizationHeader: 'Bearer '};
 
   Future<dynamic> callAPI(
       MyHttpMethod httpMethod, String apiName, dynamic body) async {
-    var uri = Uri.https(_baseUrl, apiName);
+    var uri = Uri.http(_baseUrl, apiName);
     var res;
 
     switch (httpMethod) {
