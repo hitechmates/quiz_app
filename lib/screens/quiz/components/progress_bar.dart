@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/controllers/question_controller.dart';
+import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class ProgressBar extends StatelessWidget {
   const ProgressBar({
@@ -10,38 +11,24 @@ class ProgressBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    double maxWidth = (size.width > 1000) ? size.width * 0.25 : kDefaultPadding;
+
     return Container(
-      width: double.infinity,
-      height: 50,
-      decoration: BoxDecoration(
-        border: Border.all(color: Color(0xFF3F4768), width: 3),
-        borderRadius: BorderRadius.circular(50),
-      ),
+      margin: EdgeInsets.symmetric(horizontal: maxWidth),
       child: GetBuilder<QuestionController>(
           init: QuestionController(),
           builder: (controller) {
             return Stack(
               children: [
                 LayoutBuilder(
-                  builder: (context, constraints) => Container(
-                    width: constraints.maxWidth * controller.animation.value,
-                    decoration: BoxDecoration(
-                      gradient: kPrimaryGradient,
-                      borderRadius: BorderRadius.circular(50),
-                    ),
+                  builder: (context, constraints) => StepProgressIndicator(
+                    totalSteps: controller.questions.length,
+                    currentStep: controller.questionNumber.value,
+                    size: 10,
+                    padding: 0,
                   ),
                 ),
-                Positioned.fill(
-                    child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: kDefaultPadding / 2),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("${(controller.animation.value * 60).round()} sec"),
-                    ],
-                  ),
-                ))
               ],
             );
           }),

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/controllers/question_controller.dart';
 import 'package:quiz_app/screens/quiz/components/progress_bar.dart';
+import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 import 'question_card.dart';
 
@@ -33,11 +34,11 @@ class _Body extends State<Body> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-                child: ProgressBar(),
-              ),
+              // Padding(
+              //   padding:
+              //       const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+              //   child: ProgressBar(),
+              // ),
               SizedBox(height: kDefaultPadding),
               Padding(
                   padding:
@@ -60,17 +61,18 @@ class _Body extends State<Body> {
                         ])),
                   )),
               Divider(thickness: 1.5),
-              SizedBox(height: kDefaultPadding),
+              // SizedBox(height: kDefaultPadding),
+              ProgressBar(),
+
               Expanded(
                   child: PageView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                controller: _questionController.pageController,
-                onPageChanged: _questionController.updateQuestionNumber,
-                itemCount: _questionController.questions.length,
-                itemBuilder: (context, index) => QuestionCard(
-                  question: _questionController.questions[index],
-                ),
-              ))
+                      physics: NeverScrollableScrollPhysics(),
+                      controller: _questionController.pageController,
+                      onPageChanged: _questionController.updateQuestionNumber,
+                      itemCount: _questionController.questions.length,
+                      itemBuilder: (context, index) => QuestionCard(
+                            question: _questionController.questions[index],
+                          )))
             ],
           ),
         )

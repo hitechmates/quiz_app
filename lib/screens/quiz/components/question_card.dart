@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:quiz_app/controllers/question_controller.dart';
 import 'package:quiz_app/models/question.dart';
 import 'package:quiz_app/screens/quiz/components/option.dart';
+import 'package:quiz_app/screens/quiz/components/progress_bar.dart';
 
 import '../../../constants.dart';
 
@@ -17,13 +18,21 @@ class QuestionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     QuestionController _controller = Get.put(QuestionController());
-    print('aa====${question.options![0].text}');
+    Size size = MediaQuery.of(context).size;
+
+    double maxWidth = (size.width > 1000) ? size.width * 0.25 : kDefaultPadding;
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: kDefaultPadding),
+      margin: EdgeInsets.only(
+          bottom: kDefaultPadding, left: maxWidth, right: maxWidth),
+      // EdgeInsets.symmetric(horizontal: maxWidth, vertical: kDefaultPadding),
       padding: EdgeInsets.all(kDefaultPadding),
       decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(25)),
+        color: Colors.white,
+        // borderRadius: BorderRadius.circular(25)
+      ),
       child: Column(children: [
+        // ProgressBar(),
+        Container(),
         Text(
           question.question!,
           style: Theme.of(context)

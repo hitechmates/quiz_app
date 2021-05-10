@@ -45,12 +45,12 @@ class _OptionState extends State<Option> {
     // print('in opt---${parentWidget.text}');
 
     switch (parentWidget.type) {
-      case 'multi':
+      case 'checbox':
         wgt = CheckboxListTile(
           controlAffinity: ListTileControlAffinity.trailing,
           // secondary: const Icon(Icons.alarm),
           title: Text(
-            "${parentWidget.index + 1} ${parentWidget.text}",
+            "${parentWidget.text}",
             style: TextStyle(color: kGrayColor, fontSize: 16),
           ),
           // subtitle: Text('Ringing after 12 hours'),
@@ -72,7 +72,7 @@ class _OptionState extends State<Option> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "${parentWidget.index + 1} ${parentWidget.text}",
+              "${parentWidget.text}",
               style: TextStyle(color: getTheRightColor(), fontSize: 16),
             ),
             Container(
@@ -98,16 +98,23 @@ class _OptionState extends State<Option> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              "${parentWidget.index + 1} ${parentWidget.text}",
-              style: TextStyle(color: getTheRightColor(), fontSize: 16),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "${parentWidget.text}",
+                    style: TextStyle(color: getTheRightColor(), fontSize: 16),
+                  ),
+                ),
+              ],
             ),
-            Widgets(type: parentWidget.optionType, values: parentWidget.values)
-            // Container(
-            //   padding: EdgeInsets.all(kDefaultPadding),
-            //   child: Widgets(
-            //       type: parentWidget.optionType, values: parentWidget.values),
-            // )
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Widgets(
+                  type: parentWidget.optionType, values: parentWidget.values),
+            )
           ],
         );
 
@@ -204,8 +211,8 @@ class _OptionState extends State<Option> {
           return InkWell(
             onTap: widget.press,
             child: Container(
-              margin: EdgeInsets.only(top: 10),
-              padding: EdgeInsets.all(10),
+              margin: EdgeInsets.only(top: kDefaultPadding1),
+              padding: EdgeInsets.all(kDefaultPadding1),
               // decoration: BoxDecoration(
               //   border: Border.all(color: kGrayColor),
               //   borderRadius: BorderRadius.circular(15),
