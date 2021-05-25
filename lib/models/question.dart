@@ -7,7 +7,7 @@ import 'options.dart';
 /// options : [{"text":"0-1 years","type":null,"values":null},{"text":"1-2 years","type":null,"values":null},{"text":"2-4 years","type":null,"values":null},{"text":"4-6 years","type":null,"values":null},{"text":"6-10 years","type":null,"values":null},{"text":"10-15 years","type":null,"values":null},{"text":"15+ years","type":null,"values":null}]
 
 class Question {
-  int? id;
+  String? id;
   String? question;
   String? subText;
   String? type;

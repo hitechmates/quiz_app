@@ -53,7 +53,7 @@ class _WidgetsState extends State<Widgets> {
           underline: Container(
             height: 2,
             width: 100,
-            color: Colors.deepPurpleAccent,
+            color: kGrayColor,
           ),
           onChanged: (String? newValue) {
             setState(() {
@@ -67,7 +67,7 @@ class _WidgetsState extends State<Widgets> {
                 value: value,
                 child: Text(value,
                     style: TextStyle(
-                      color: Colors.deepPurple,
+                      color: kBlackColor,
                     )));
           }).toList(),
         );

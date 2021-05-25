@@ -11,11 +11,10 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    Widget  _defaultHome = WelcomeScreen();// WelcomeScreen();
+    Widget _defaultHome = WelcomeScreen(); // WelcomeScreen();
     // Get result of the login function.
     String token = CookieManager.getCookie("token");
     print("token: " + token);
@@ -27,11 +26,11 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Quiz App',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark(),
+      theme: ThemeData.light(),
       initialRoute: 'home',
       routes: {
-        'home' : (context) => _defaultHome,
-        'profile' : (context) => ProfileScreen(),
+        'home': (context) => _defaultHome,
+        'profile': (context) => ProfileScreen(),
       },
     );
   }

@@ -39,7 +39,7 @@ class _OptionState extends State<Option> {
           return Colors.blue;
         }
       }
-      return kGrayColor;
+      return kBlackColor;
     }
 
     // print('in opt---${parentWidget.text}');
@@ -79,15 +79,16 @@ class _OptionState extends State<Option> {
               height: 26,
               width: 26,
               decoration: BoxDecoration(
-                color: getTheRightColor() == kGrayColor
+                color: getTheRightColor() == kBlackColor
                     ? Colors.transparent
                     : getTheRightColor(),
                 borderRadius: BorderRadius.circular(50),
                 border: Border.all(color: getTheRightColor()),
               ),
               child: Icon(
-                Icons.close,
+                Icons.done,
                 size: 16,
+                color: Colors.white,
               ),
             )
           ],
