@@ -24,12 +24,12 @@ class _Body extends State<Body> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Image(
-          image: AssetImage("bg.jpg"),
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          fit: BoxFit.cover,
-        ),
+        // Image(
+        //   image: AssetImage("bg.jpg"),
+        //   width: MediaQuery.of(context).size.width,
+        //   height: MediaQuery.of(context).size.height,
+        //   fit: BoxFit.cover,
+        // ),
         SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,26 +40,26 @@ class _Body extends State<Body> {
               //   child: ProgressBar(),
               // ),
               SizedBox(height: kDefaultPadding),
-              Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-                  child: Obx(
-                    () => Text.rich(TextSpan(
-                        text:
-                            "Question ${_questionController.questionNumber.value}",
-                        style: Theme.of(context)
-                            .textTheme
-                            .headline4!
-                            .copyWith(color: kSecondaryColor),
-                        children: [
-                          TextSpan(
-                              text: "/${_questionController.questions.length}",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline5!
-                                  .copyWith(color: kSecondaryColor))
-                        ])),
-                  )),
+              // Padding(
+              //     padding:
+              //         const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+              //     child: Obx(
+              //       () => Text.rich(TextSpan(
+              //           text:
+              //               "Question ${_questionController.questionNumber.value}",
+              //           style: Theme.of(context)
+              //               .textTheme
+              //               .headline4!
+              //               .copyWith(color: kSecondaryColor),
+              //           children: [
+              //             TextSpan(
+              //                 text: "/${_questionController.questions.length}",
+              //                 style: Theme.of(context)
+              //                     .textTheme
+              //                     .headline5!
+              //                     .copyWith(color: kSecondaryColor))
+              //           ])),
+              //     )),
               Divider(thickness: 1.5),
               // SizedBox(height: kDefaultPadding),
               ProgressBar(),

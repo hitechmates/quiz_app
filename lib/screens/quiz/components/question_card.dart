@@ -28,10 +28,16 @@ class QuestionCard extends StatelessWidget {
       // EdgeInsets.symmetric(horizontal: maxWidth, vertical: kDefaultPadding),
       padding: EdgeInsets.all(kDefaultPadding),
       height: size.height,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        // borderRadius: BorderRadius.circular(25)
-      ),
+      decoration: BoxDecoration(color: Colors.white, boxShadow: [
+        BoxShadow(
+          color: Colors.grey.withOpacity(0.5),
+          spreadRadius: 5,
+          blurRadius: 7,
+          offset: Offset(0, 3), // changes position of shadow
+        ),
+      ]
+          // borderRadius: BorderRadius.circular(25)
+          ),
       child:
           // Scrollbar(
           //   isAlwaysShown: true,
