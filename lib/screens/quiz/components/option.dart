@@ -1,226 +1,115 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:grouped_buttons/grouped_buttons.dart';
 import 'package:quiz_app/controllers/question_controller.dart';
 import 'package:quiz_app/screens/quiz/components/widgets.dart';
 
 import '../../../constants.dart';
 
 class Option extends StatefulWidget {
-  const Option(
-      {Key? key,
-      required this.index,
-      required this.text,
-      this.type,
-      this.optionType,
-      this.values,
-      required this.press})
-      : super(key: key);
+  const Option({
+    Key? key,
+    required this.options,
+    this.type,
+  }) : super(key: key);
 
-  final int index;
-  final String text;
+  final List options;
   final dynamic? type;
-  final dynamic? optionType;
-  final dynamic? values;
-  final VoidCallback press;
 
   @override
   _OptionState createState() => _OptionState();
 }
 
 class _OptionState extends State<Option> {
+  String _selectedRadio = "";
   bool valuefirst = false;
-  Widget condition(qnController, parentWidget) {
-    Widget wgt;
-    String selectedRadio = "false";
+  List<String> _selectedCheckboxItems = [];
 
-    Color getTheRightColor() {
-      if (qnController.isAnswered) {
-        if (parentWidget.index == qnController.selectedAns) {
-          return Colors.blue;
-        }
-      }
-      return kBlackColor;
-    }
+  List<Widget> condition() {
+    List<Widget> wgt;
 
-    // print('in opt---${parentWidget.text}');
-
-    switch (parentWidget.type) {
-      case 'checbox':
-        wgt = CheckboxListTile(
-          controlAffinity: ListTileControlAffinity.trailing,
-          // secondary: const Icon(Icons.alarm),
-          title: Text(
-            "${parentWidget.text}",
-            style: TextStyle(color: kGrayColor, fontSize: 16),
-          ),
-          // subtitle: Text('Ringing after 12 hours'),
-          autofocus: false,
-          activeColor: Colors.blue,
-          checkColor: Colors.white,
-          selected: valuefirst,
-          dense: true,
-          value: valuefirst,
-          onChanged: (bool? value) {
-            setState(() {
-              this.valuefirst = value!;
-            });
-          },
-        );
-        break;
+    switch (widget.type) {
       case 'radio':
-        wgt = Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              "${parentWidget.text}",
-              style: TextStyle(color: getTheRightColor(), fontSize: 16),
-            ),
-            Container(
-              height: 26,
-              width: 26,
-              decoration: BoxDecoration(
-                color: getTheRightColor() == kBlackColor
-                    ? Colors.transparent
-                    : getTheRightColor(),
-                borderRadius: BorderRadius.circular(50),
-                border: Border.all(color: getTheRightColor()),
-              ),
-              child: Icon(
-                Icons.done,
-                size: 16,
-                color: Colors.white,
-              ),
-            )
-          ],
-        );
+        wgt = widget.options
+            .map<Widget>((data) => Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: RadioListTile<String>(
+                    title: Text(
+                      "${data.text}",
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    groupValue: _selectedRadio,
+                    value: data.text,
+                    onChanged: (val) {
+                      setState(() {
+                        debugPrint('VAL = $val');
+                        _selectedRadio = data.text;
+                      });
+                    },
+                  ),
+                ))
+            .toList();
+        break;
+
+      case 'checbox':
+        // var valueFirst = {data.text: false};
+        print("2222222");
+        // wgt = CheckboxListTile(
+        //   controlAffinity: ListTileControlAffinity.trailing,
+        //   // secondary: const Icon(Icons.alarm),
+        //   title: Text(
+        //     "${data.text}",
+        //     style: TextStyle(color: kGrayColor, fontSize: 16),
+        //   ),
+        //   // subtitle: Text('Ringing after 12 hours'),
+        //   autofocus: false,
+        //   activeColor: Colors.blue,
+        //   checkColor: Colors.white,
+        //   // selected: valueFirst[data.text]!,
+        //   dense: true,
+        //   value: valueFirst[data.text],
+        //   onChanged: (bool? value) {
+        //     setState(() {
+        //       print("value==${value}");
+        //       valueFirst['index'] = value!;
+        //       print("value==${valueFirst}");
+        //     });
+        //   },
+        // );
+        wgt = [new Container()];
         break;
       default:
-        wgt = Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    "${parentWidget.text}",
-                    style: TextStyle(color: getTheRightColor(), fontSize: 16),
-                  ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Widgets(
-                  type: parentWidget.optionType, values: parentWidget.values),
-            )
-          ],
-        );
-
-      //     Padding(
-      //   padding: const EdgeInsets.all(kDefaultPadding * 0.75),
-      //   child: Column(
-      //     mainAxisAlignment: MainAxisAlignment.start,
-      //     children: [
-      //       ListTile(
-      //         title: Text(
-      //           "${parentWidget.index + 1} ${parentWidget.text}",
-      //           style: TextStyle(color: getTheRightColor(), fontSize: 16),
-      //         ),
-      //         trailing: Widgets(
-      //             type: parentWidget.optionType, values: parentWidget.values),
-      //       )
-      //     ],
-      //   ),
-      // );
-
-      //     Column(
-      //   children: [
-      //     Row(
-      //       crossAxisAlignment: CrossAxisAlignment.start,
-      //       children: [
-      //         Padding(
-      //           padding: const EdgeInsets.all(kDefaultPadding * 0.75),
-      //           child: Text(
-      //             "${parentWidget.index + 1} ${parentWidget.text}",
-      //             style: TextStyle(color: getTheRightColor(), fontSize: 16),
-      //           ),
-      //         ),
-      //
-      //         Widgets(
-      //             type: parentWidget.optionType, values: parentWidget.values)
-      //         // Expanded(
-      //         //     child: ListView.builder(
-      //         //   scrollDirection: Axis.vertical,
-      //         //   shrinkWrap: true,
-      //         //   physics: NeverScrollableScrollPhysics(),
-      //         //   padding: EdgeInsets.all(kDefaultPadding),
-      //         //   itemCount: parentWidget.values!.length,
-      //         //   itemBuilder: (BuildContext context, int index) {
-      //         //     String dropdownValue = parentWidget.values![0];
-      //         //     return DropdownButton<String>(
-      //         //       value: dropdownValue,
-      //         //       icon: const Icon(Icons.arrow_downward),
-      //         //       iconSize: 24,
-      //         //       elevation: 16,
-      //         //       style: const TextStyle(color: Colors.deepPurple),
-      //         //       underline: Container(
-      //         //         height: 2,
-      //         //         color: Colors.deepPurpleAccent,
-      //         //       ),
-      //         //       onChanged: (String? newValue) {
-      //         //         setState(() {
-      //         //           dropdownValue = newValue!;
-      //         //         });
-      //         //       },
-      //         //       items: (parentWidget.values)
-      //         //           .cast<String>()
-      //         //           .map<DropdownMenuItem<String>>((String value) {
-      //         //         return DropdownMenuItem<String>(
-      //         //           value: value,
-      //         //           child: Text(value),
-      //         //         );
-      //         //       }).toList(),
-      //         //     );
-      //         //     //   RadioListTile<String>(
-      //         //     //   title: Text(parentWidget.values![index],
-      //         //     //       style: Theme.of(context)
-      //         //     //           .textTheme
-      //         //     //           .subtitle1!
-      //         //     //           .copyWith(color: kGrayColor)),
-      //         //     //   value: parentWidget.values![index],
-      //         //     //   groupValue: selectedRadio,
-      //         //     //   onChanged: (val) => {print('vall----$val')},
-      //         //     // );
-      //         //   },
-      //         // ))
-      //       ],
-      //     ),
-      //   ],
-      // );
+        wgt = [new Container()];
     }
+
     return wgt;
   }
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<QuestionController>(
-        init: QuestionController(),
-        builder: (qnController) {
-          return InkWell(
-            onTap: widget.press,
-            child: Container(
-              margin: EdgeInsets.only(top: kDefaultPadding1),
-              padding: EdgeInsets.all(kDefaultPadding1),
-              // decoration: BoxDecoration(
-              //   border: Border.all(color: kGrayColor),
-              //   borderRadius: BorderRadius.circular(15),
-              // ),
-              child: condition(qnController, widget),
-            ),
-          );
-        });
+    print("1111111111");
+    return Container(
+      margin: EdgeInsets.only(top: kDefaultPadding1),
+      padding: EdgeInsets.all(kDefaultPadding1),
+      // decoration: BoxDecoration(
+      //   border: Border.all(color: kGrayColor),
+      //   borderRadius: BorderRadius.circular(15),
+      // ),
+      child: Container(
+        // margin: EdgeInsets.all(kDefaultPadding),
+        padding: EdgeInsets.all(kDefaultPadding),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: condition(),
+          // widget.options
+          //     .map<Widget>((data) => Padding(
+          //           padding: const EdgeInsets.all(10),
+          //           child: condition(data),
+          //         ))
+          //     .toList(),
+        ),
+      ),
+    );
   }
 }
